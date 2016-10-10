@@ -23,6 +23,25 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   });
 })
 
+  // INITIATING FB FUNTION ASYNHRONOUSLY
+  window.fbAsyncInit = function() {
+      FB.init({ 
+        appId: '1525793961071513',
+        status: true, 
+        cookie: true, 
+        xfbml: true,
+        version: 'v2.4'
+      });
+  };
+
+  (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs); 
+    }(document, 'script', 'facebook-jssdk'));
+
 .config(function($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -77,9 +96,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         controller: 'AccountCtrl'
       }
     }
+  })
+
+  .state('login', {
+  url: '/login',
+  templateUrl: 'templates/login.html',
+  controller: 'loginCtrl'
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/login');
 
 });

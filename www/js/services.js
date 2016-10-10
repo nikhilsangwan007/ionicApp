@@ -47,4 +47,17 @@ angular.module('starter.services', [])
       return null;
     }
   };
-});
+})
+
+.factory('loginFactory', ['$http', function($http) {
+  return {
+    userLogin: function(data) {
+      var config = {
+          headers : {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'          
+                  }
+        }
+        return $http.post("index.php/welcome/set_session", data, config);
+    }
+  }
+}])
